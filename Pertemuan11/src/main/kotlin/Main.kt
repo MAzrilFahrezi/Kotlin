@@ -20,6 +20,8 @@ class Student(
         grades.add(grade)
         credits += grade.credits
     }
+
+
 }
 fun main() {
     val ajil = Person(firstName = "ajil", lastName = "fuckrezy")
@@ -86,4 +88,78 @@ fun main() {
     val proposalTA = Grade(letter = "A", points = 8.0, credits = 2.0)
     rezi.recordGrade(proposalTA)
     println(proposalTA)
+
+    class Student(var firstName: String, var lastName: String, var id: Int){
+
+        override fun hashCode(): Int{
+            val prime = 31
+            var result = 1
+
+            result = prime * result + firstName.hashCode()
+            result = prime * result + id
+            result = prime * result + lastName.hashCode()
+
+            return result
+        }
+
+        override fun equals(other: Any?): Boolean{
+            if (this === other)
+                return true
+            if (other === null)
+                return false
+            if (javaClass != other.javaClass)
+                return false
+
+            val obj = other as Student?
+
+            if (firstName != obj?.firstName)
+                return false
+            if (lastName != obj.lastName)
+                return false
+            if (id != obj.id)
+                return false
+
+            return false
+        }
+
+        override fun toString(): String {
+            return "Student(firstName=$firstName, lastName=$lastName, id=$id"
+        }
+
+        fun copy(firstName: String = this.firstName,
+                 lastName: String = this.lastName,
+                 id: Int = this.id) = Student(firstName, lastName, id)
+
+    }
+
+    val albert = Student(firstName = "Albert", lastName = "Einstein", id = 1)
+    val richard = Student(firstName = "Richard", lastName = "Feyman", id = 2)
+    val albertCopy = albert.copy()
+
+    println(albert)
+    println(richard)
+    println(albert == richard) // false
+    println(albert == albertCopy) // true
+    println(albert === albertCopy) // false
+
+    data class StudentData(var firstName: String, var lastName: String, var id: Int)
+
+    val marie = StudentData("Marie", "Curie", 1)
+    val emmy = StudentData("Emy", "Noether", 2)
+    val marieCopy = marie.copy()
+
+    println(marie)
+    println(emmy)
+    println(marie == emmy) // false
+    println(marie == marieCopy) // true
+    println(marie === marieCopy) // false
+
+    //Destructuring Declaration
+    val(firstName, lastName, id) = marie
+    println(firstName) // Marie
+    println(lastName) // Curie
+    println(id) // 1
+
 }
+
+
