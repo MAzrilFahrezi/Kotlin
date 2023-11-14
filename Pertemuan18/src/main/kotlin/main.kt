@@ -56,7 +56,7 @@ fun main() {
     val biru = Color.BLUE
     println("Warna merah : ${merah.rgb}")
     println("Warna hijau : ${hijau.rgb}")
-    println("Warna biru : ${biru.rgb}")
+    println("Warna biru. : ${biru.rgb}")
 
     val goldCreditCard = CreditCard.GOLD
     println("Biaya admin kartu kredit ${goldCreditCard.name} : ${goldCreditCard.calculateAdminFee()}")
